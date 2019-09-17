@@ -59,21 +59,21 @@ The following is the effect after smooth the noisy image.
 
 #### 1. Smooth the image after adding the uniform noise:
 
-<div align=center><img width="400" src="../../src/uniform_noise_filter_1.png"/></div>
+<div align=center><img width="500" src="../../src/uniform_noise_filter_1.png"/></div>
 
 >The time cost by applying mean filter: 21.845s<br/>
 >The time cost by applying separable filters: 7.301s
 
 #### 2. Smooth the image after adding the salt&pepper noise:
 
-<div align=center><img width="400" src="../../src/saltpepper_noise_filter_1.png"/></div>
+<div align=center><img width="500" src="../../src/saltpepper_noise_filter_1.png"/></div>
 
 >The time cost by applying mean filter: 21.605s<br/>
 >The time cost by applying separable filters: 8.085s
 
 #### 3. Smooth the image after adding the gaussian noise:
 
-<div align=center><img width="400" src="../../src/gaussian_noise_filter_1.png"/></div>
+<div align=center><img width="500" src="../../src/gaussian_noise_filter_1.png"/></div>
 
 >The time cost by applying mean filter: 27.941s<br/>
 >The time cost by applying separable filters: 9.428s

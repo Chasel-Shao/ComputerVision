@@ -54,25 +54,26 @@ def calculate_number_of_diff_pixel(image1, image2, margin):
 ```
 
 To sum up, there was no difference between those two kind of pictures after using mean filter and the separable filter. And Separating a 2D filter into two 1D filters can greatly speed convolution.
+
 The following is the effect after smooth the noisy image.
 
 #### 1. Smooth the image after adding the uniform noise:
 
-![uniform noise](../../src/uniform_noise_filter_1.png)
+<div align=center><img width="400" src="../../src/uniform_noise_filter_1.png"/></div>
 
 >The time cost by applying mean filter: 21.845s<br/>
 >The time cost by applying separable filters: 7.301s
 
 #### 2. Smooth the image after adding the salt&pepper noise:
 
-![salt pepper noise](../../src/saltpepper_noise_filter_1.png)
+<div align=center><img width="400" src="../../src/saltpepper_noise_filter_1.png"/></div>
 
 >The time cost by applying mean filter: 21.605s<br/>
 >The time cost by applying separable filters: 8.085s
 
 #### 3. Smooth the image after adding the gaussian noise:
 
-![gaussian noise](../../src/gaussian_noise_filter_1.png)
+<div align=center><img width="400" src="../../src/gaussian_noise_filter_1.png"/></div>
 
 >The time cost by applying mean filter: 27.941s<br/>
 >The time cost by applying separable filters: 9.428s

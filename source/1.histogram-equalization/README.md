@@ -43,12 +43,12 @@ def hist_equalization(image):
 
 Example 1:
 
-![example1](../../src/histeq_1.png)
+<div align=center><img width="400" src="../../src/histeq_1.png"/></div>
 
 Example 2:
 
-![example2](../../src/histeq_2.png)
+<div align=center><img width="400" src="../../src/histeq_2.png"/></div>
 
 Example 3:
 
-![example3](../../src/histeq_3.png)
+<div align=center><img width="400" src="../../src/histeq_3.png"/></div>

@@ -25,7 +25,7 @@ def cumsum(h):
 
  Third, transform the input image to an output image
 
-```
+```python
 def hist_equalization(image):
     h = image_hist(image)
     cdf = np.array(cumsum(h))

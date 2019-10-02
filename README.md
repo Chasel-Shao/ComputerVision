@@ -1,13 +1,21 @@
 # Computer Vision
 
-This repository is used to record my algorithm of learning computer vision from scratch.
-Some basic image processing algorithms are involved, and display some examples
+This repository is used to record me learning computer vision algorithms from scratch.
+Some basic image processing algorithms are introduced and some examples are given.
 
-Such as Histogram equalization, Convolution, Separable filters
+Please give me a star if you find it useful to you
 
-* [1.histogram-equalization](source/1.histogram-equalization/README.md)
+#### The following sections will continue to be updated
 
-* [2.separable-filters](source/2.separable-filters/README.md)
+* [1. Histogram Equalization](source/1.Histogram-Equalization/README.md)
+
+* [2. Separable Filters](source/2.Separable-Filters/README.md)
+
+* [3. Sobel Operator](source/3.Sobel-Filter/README.md)
+
+* [4. Marr Hildreth Edge Detector](source/4.Marr-Hildreth-Edge-Detector/README.md)
+
+* [5. Canny Edge Detector](source/5.Canny-Edge-Detector/README.md)
 
 Continue to enrich...
 

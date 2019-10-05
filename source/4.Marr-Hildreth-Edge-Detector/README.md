@@ -150,6 +150,8 @@ The rendering is shown below (σ=2):
 <tr style="border:none"><td style="border:none;width:45%">2. Laplacian of Gaussian</td><td style="border:none;width:45%;">3. Zero-crossings</td></tr></table>
 </div>
 
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
 ## Reference
 1. [Wikipedia](https://en.wikipedia.org/wiki/Canny_edge_detector)
 2. [OpenCV](https://docs.opencv.org/trunk/da/d22/tutorial_py_canny.html)

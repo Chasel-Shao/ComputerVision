@@ -84,7 +84,7 @@ def canny():
 
     # step 1
     kernel = gaussian_kernel(5,1)
-    filtered = image_convolution(kernel, raw_image)
+    filtered = image_convolution(raw_image, kernel)
     cv2.imshow("smoothed_image", np.uint8(filtered))
 
     imgpadding_sobel = np.pad(filtered, pad_width=1, mode='constant', constant_values=0)

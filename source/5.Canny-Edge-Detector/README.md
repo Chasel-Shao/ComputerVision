@@ -6,50 +6,51 @@ Canny edge detection is a multi-step algorithm that can detect edges with noise 
 ### Step 1: Noise reduction with Gaussian filter
 Since all edge detection results are easily affected by image noise, it is essential to filter out hte noise to prevent false detection caused by noise. To smooth the image , a Gaussian filter is applied to convolve with the image. This step will slightly smooth the image to reduce the effects of obvious noise on the edge detector.
 
-$$
+<p>\[
 f[dr,dc] = \frac{1}{2\pi\sigma^2}e^{\frac{dr^2+dc^2}{-2\sigma^2}}
-$$
+\]</p>
 
 ### Step 2: Finding Intensity Gradient of the Image
 An edge is an image may point in a variety of directions, so the canny algorithm uses four filters to detect horizontal vertical and diagonal edges in the blurred image. The edge detection operator(such as Roberts, Prewitt, or Sobel) returns a value for the first derivative in the horizontal direction($G_x$) and the vertical direction($G_y$). The Sobel filter is used as follows:
 
 In the x direction:
 
-$$
+<p>\[
 G_x=
 \left\{
 \begin{array}
-\   -1 & 0 & 1
-\\\\-2 & 0 & 2
-\\\\-1 & 0 & 1
+\   -1 &amp; 0 &amp; 1
+\\\\-2 &amp; 0 &amp; 2
+\\\\-1 &amp; 0 &amp; 1
 \end{array}
 \right\}
  * A
-$$
+\]</p>
+
 
 In the y direction:
 
-$$
+<p>\[
 G_y=
 \left\{
 \begin{array}
-\  -1 &-2 &-1
-\\\\0 &0 &0
-\\\\1 &2 &1
+\  -1 &amp;-2 &amp;-1
+\\\\0 &amp;0 &amp;0
+\\\\1 &amp;2 &amp;1
 \end{array}
 \right\} 
 * A
-$$
+\]</p>
 
 From this the edge fradient and direction can be determined:
 
-$$
+<p>\[
 Gradient(G) = \sqrt{G_x^2+G_y^2}
-$$
+\]</p>
 
-$$
+<p>\[
 Angle(\theta) = tan^{-1} \left( \frac{G_y}{G_x} \right)
-$$
+\]</p>
 
 
 ### Step 3: Non-maximum suppression
@@ -194,6 +195,11 @@ The rendering is shown below (σ=2):
 <table style="width:100%;border:none;text-align: center;" >
 <tr style="border:none"><td style="border:none;width:45%">4. Double Threshold</td><td style="border:none;width:45%;">5. Hysteresis</td></tr></table>
 </div>
+
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
 ## Reference
 1. [Wikipedia](https://en.wikipedia.org/wiki/Canny_edge_detector)
 2. [OpenCV](https://docs.opencv.org/trunk/da/d22/tutorial_py_canny.html)

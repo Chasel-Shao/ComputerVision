@@ -11,29 +11,48 @@ def nonmax_supression(image, angle):
     angle = angle * 180.0 / np.pi
     for i in range(1, M - 1):
         for j in range(1, N - 1):
-            if angle[i][j] < 0:
-                angle[i][j] += 180.0
             degree = angle[i][j]
             # 0°
-            if (0 <= degree < 22.5) or (157.5 <= degree < 180.):
-                if image[i][j] < image[i][j-1] or image[i][j] < image[i][j+1]:
+            if (22.5 > degree > -22.5) or (degree < -157.5 or degree > 157.5):
+                if image[i][j] < image[i][j - 1] or image[i][j] < image[i][j + 1]:
                     max_image[i][j] = 0
-            # 45°
-            elif 22.5 <= degree < 67.5:
-                if image[i][j] < image[i+1][j-1] or image[i][j] < image[i-1][j+1]:
+                # 45°
+            elif (22.5 <= degree < 67.5) or (-67.5 <= degree < -22.5):
+                if image[i][j] < image[i + 1][j - 1] or image[i][j] < image[i - 1][j + 1]:
                     max_image[i][j] = 0
-            # 90°
-            elif 67.5 <= degree < 112.5:
+                # 90°
+            elif (67.5 <= degree < 112.5) or (-112.5 <= degree < -67.5):
                 if image[i][j] < image[i + 1][j] or image[i][j] < image[i - 1][j]:
                     max_image[i][j] = 0
-            # 135°
-            elif 112.5 <= degree < 157.5:
-                if image[i][j] < image[i-1][j-1] or image[i][j] < image[i+1][j+1]:
+                # 135°
+            elif (112.5 <= degree < 157.5) or (-157.5 <= degree < -112.5):
+                if image[i][j] < image[i - 1][j - 1] or image[i][j] < image[i + 1][j + 1]:
                     max_image[i][j] = 0
             else:
                 pass
-    return max_image
 
+            # if angle[i][j] < 0:
+            #     angle[i][j] += 180.0
+            # degree = angle[i][j]
+            # # 0°
+            # if (0 <= degree < 22.5) or (157.5 <= degree < 180.):
+            #     if image[i][j] < image[i][j-1] or image[i][j] < image[i][j+1]:
+            #         max_image[i][j] = 0
+            # # 45°
+            # elif 22.5 <= degree < 67.5:
+            #     if image[i][j] < image[i+1][j-1] or image[i][j] < image[i-1][j+1]:
+            #         max_image[i][j] = 0
+            # # 90°
+            # elif 67.5 <= degree < 112.5:
+            #     if image[i][j] < image[i + 1][j] or image[i][j] < image[i - 1][j]:
+            #         max_image[i][j] = 0
+            # # 135°
+            # elif 112.5 <= degree < 157.5:
+            #     if image[i][j] < image[i-1][j-1] or image[i][j] < image[i+1][j+1]:
+            #         max_image[i][j] = 0
+            # else:
+            #     pass
+    return max_image
 
 
 def double_threshold(img, lowThreshold=20, highThreshold=50):
@@ -50,47 +69,44 @@ def double_threshold(img, lowThreshold=20, highThreshold=50):
 
 def hysteresis(image, weak, strong=255):
     M, N = image.shape
-    for i in range(1, M-1):
-        for j in range(1, N-1):
+    for i in range(1, M - 1):
+        for j in range(1, N - 1):
             if image[i, j] == weak:
-                if ((image[i+1, j-1] == strong) or (image[i+1, j] == strong) or (image[i+1, j+1] == strong)
-                    or (image[i, j-1] == strong) or (image[i, j+1] == strong) or (image[i-1, j-1] == strong)
-                        or (image[i-1, j] == strong) or (image[i-1, j+1] == strong)):
+                if ((image[i + 1, j - 1] == strong) or (image[i + 1, j] == strong) or (image[i + 1, j + 1] == strong)
+                        or (image[i, j - 1] == strong) or (image[i, j + 1] == strong) or (image[i - 1, j - 1] == strong)
+                        or (image[i - 1, j] == strong) or (image[i - 1, j + 1] == strong)):
                     image[i, j] = strong
                 else:
                     image[i, j] = 0
     return image
 
 
-
-filepath = '../../resource/peppers_gray.png'
+filepath = '../../resource/lena_gray_512.png'
 # filepath = '../../resource/peppers_gray.png'
 raw_image = cv2.imread(filepath, cv2.IMREAD_GRAYSCALE)
-sigma = 2
+sigma = 1
 size = int(2 * (np.ceil(3 * sigma)) + 1)
 
 # step 1
 gaussian_kernel = gaussian_kernel(size, sigma)
-smoothed_image = image_convolution(gaussian_kernel, raw_image)
-cv2_show_image("smoothed_image", smoothed_image)
-
+smoothed_image = image_convolution(raw_image, gaussian_kernel)
+cv2.imshow("smoothed_image", np.uint8(smoothed_image))
 
 # step 2
 derivative_image, theta = sobel_filters(smoothed_image)
-cv2_show_image("derivative_image", derivative_image)
+cv2.imshow("derivative_image", np.uint8(derivative_image))
 
 # step 3
 nonmax_supression_image = nonmax_supression(derivative_image, theta)
-cv2_show_image("nonmax_supression_image", nonmax_supression_image)
+cv2.imshow("nonmax_supression_image", np.uint8(nonmax_supression_image))
 
 # step 4
 threshold_image, weak, strong = double_threshold(nonmax_supression_image)
-cv2_show_image("threshold_image", threshold_image)
+cv2.imshow("threshold_image", np.uint8(threshold_image))
 
 # step 5
 canny_image = hysteresis(threshold_image, weak, strong)
-cv2_show_image("canny_image", canny_image)
-
+cv2.imshow("canny_image", np.uint8(canny_image))
 
 cv2.waitKey(0)
 cv2.destroyAllWindows()

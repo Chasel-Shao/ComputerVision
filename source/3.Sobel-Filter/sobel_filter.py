@@ -11,7 +11,7 @@ Kx = np.array([[-1, 0, 1], [-2, 0, 2], [-1, 0, 1]], np.float32)
 Ky = np.array([[1, 2, 1], [0, 0, 0], [-1, -2, -1]], np.float32)
 
 
-Ix = image_convolution(Kx, raw_image)
+Ix = image_convolution(raw_image, Kx)
 image_x = np.zeros(Ix.shape)
 for i in range(row):
     for j in range(col):
@@ -24,7 +24,7 @@ for i in range(row):
 cv2.imshow("Ix-image", np.uint8(image_x))
 
 
-Iy = image_convolution(Ky, raw_image)
+Iy = image_convolution(raw_image, Ky)
 image_y = np.zeros(Iy.shape)
 for i in range(row):
     for j in range(col):

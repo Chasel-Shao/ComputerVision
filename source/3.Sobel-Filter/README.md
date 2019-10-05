@@ -5,7 +5,7 @@ The operator uses two 3x3 kernels which are convolved with the original image to
 
 In the x direction:
 
-$$
+<p>\[
 G_x=
 \left\{
 \begin{array}
@@ -15,11 +15,11 @@ G_x=
 \end{array}
 \right\}
  * A
-$$
+\]</p>
 
 In the y direction:
 
-$$
+<p>\[
 G_y=
 \left\{
 \begin{array}
@@ -29,7 +29,7 @@ G_y=
 \end{array}
 \right\} 
 * A
-$$
+\]</p>
 
 Edge detection by using Sobel filter:
 
@@ -42,12 +42,12 @@ Edge detection by using Sobel filter:
 
 At each point in the image, the resulting gradient approximations can be combined to give the gradient magnitude, using:
 
-$$
+<p>\[
 \left|grad(I[r,c])\right| = \begin{align*} 
 \sqrt{
 \left( \frac{\partial I}{\partial r} \right) ^2 + 
 \left( \frac{\partial I}{\partial c} \right)^2 } \end{align*}
-$$
+\]</p>
 
 The Sobel filter algorithm is as follows:
 
@@ -55,8 +55,8 @@ The Sobel filter algorithm is as follows:
 Kx = np.array([[-1, 0, 1], [-2, 0, 2], [-1, 0, 1]], np.float32)
 Ky = np.array([[1, 2, 1], [0, 0, 0], [-1, -2, -1]], np.float32)
 
-Ix = image_convolution(Kx, raw_image, opt=True)
-Iy = image_convolution(Ky, raw_image, opt=True)
+Ix = image_convolution(raw_image, Kx)
+Iy = image_convolution(raw_image, Ky)
 
 sobel_image = np.zeros_like(Ix, dtype=float)
 row, col = Ix.shape
@@ -104,6 +104,8 @@ Other examples:
 <table style="width:100%;border:none;text-align: center;" >
 <tr style="border:none"><td style="border:none;width:45%">The original image</td><td style="border:none;width:45%;">The final image</td></tr></table>
 </div>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
 ## Reference
 1. [Wikipedia](https://en.wikipedia.org/wiki/Canny_edge_detector)

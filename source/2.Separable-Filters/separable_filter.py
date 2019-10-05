@@ -55,7 +55,7 @@ plt.imshow(gaussian_noise_image)
 
 # 5. show the mean filter image
 start_time = time.time()
-mean_filter_image = image_convolution(mean_kernel, uniform_noise_image)
+mean_filter_image = image_convolution(uniform_noise_image, mean_kernel)
 end_time = time.time() - start_time
 print("mean filter cost time: ", end_time)
 
@@ -66,8 +66,8 @@ plt.imshow(mean_filter_image)
 
 # 6. show the separable mean filter image
 start_time = time.time()
-temp_image = image_convolution(separable_kernel_1, uniform_noise_image)
-separable_filter_image = image_convolution(separable_kernel_2, temp_image)
+temp_image = image_convolution(uniform_noise_image, separable_kernel_1)
+separable_filter_image = image_convolution(temp_image, separable_kernel_2)
 end_time = time.time() - start_time
 print("separable filter cost time: ", end_time)
 

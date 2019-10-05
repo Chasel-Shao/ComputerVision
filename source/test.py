@@ -22,8 +22,8 @@ Ky2 = np.array(([-1, -2, -1],
                    [1, 2, 1]))
 
 def test_sobel_filter(Kx, Ky):
-    Ix = image_convolution(Kx, raw_image, opt=False)
-    Iy = image_convolution(Ky, raw_image, opt=True)
+    Ix = image_convolution(raw_image, Kx)
+    Iy = image_convolution(raw_image, Ky)
 
     sobel_image = np.zeros_like(raw_image)
     row, col = sobel_image.shape
@@ -37,8 +37,5 @@ def test_sobel_filter(Kx, Ky):
 image1, theta1 = test_sobel_filter(Kx, Ky)
 image2, theta2 = test_sobel_filter(Kx, Ky2)
 
-
-# image1 = image_convolution(Ky, raw_image)
-# image2 = image_convolution(Ky2, raw_image)
 
 calculate_number_of_diff_pixel(image1, image2, 3)

@@ -4,7 +4,7 @@
 The image convolution calculation code is computed as follows:
 
 ```python
-def image_convolution(kernel, image):
+def image_convolution(image, kernel):
     dst = np.copy(image)
     row, col = image.shape
     m, n = kernel.shape
@@ -27,7 +27,7 @@ Apply mean filter to convolve the image with W = 3 (size = 7):
 ```python
 size = 7
 mean_kernel = np.mat(np.ones(shape=(size,size), dtype=float)) / (size * size)
-smoothed_image = image_convolution(mean_kernel, noise_image)
+smoothed_image = image_convolution(noise_image, mean_kernel)
 ```
 
 Apply separable filters by separating a 2D filter into two 1D filters:
@@ -36,8 +36,8 @@ Apply separable filters by separating a 2D filter into two 1D filters:
 size = 7
 separable_kernel_1 = np.mat(np.ones(shape=(1, size), dtype=float)) / size
 separable_kernel_2 = np.mat(np.ones(shape=(size, 1), dtype=float)) / size
-intermidiate_noise_image = image_convolution(separable_kernel_1, noise_image)
-smoothed_image = image_convolution(separable_kernel_2, intermidiate_noise_image)
+intermidiate_noise_image = image_convolution(noise_image, separable_kernel_1)
+smoothed_image = image_convolution(intermidiate_noise_image, separable_kernel_2)
 ```
 
 Calculate the number of pixel differences between two images:

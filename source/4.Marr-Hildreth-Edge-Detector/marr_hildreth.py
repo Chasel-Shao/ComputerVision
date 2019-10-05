@@ -68,7 +68,7 @@ sigma = 2
 size = int(2 * (np.ceil(3 * sigma)) + 1)
 
 gaussian_kernel = gaussian_kernel(size, sigma)
-gaussian_image = image_convolution(gaussian_kernel, raw_image)
+gaussian_image = image_convolution(raw_image, gaussian_kernel)
 cv2.imshow("gaussian_image", np.uint8(gaussian_image))
 
 LoG_image, zero_crossing_image = marr_hildreth(gaussian_image, sigma)
